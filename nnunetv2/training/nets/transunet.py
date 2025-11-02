@@ -39,7 +39,7 @@ class TransUNet(PlainConvUNet):
         n_heads: int = 8,
         dropout_rate: float = 0.1,
         positional_encoding: bool = True,
-        num_transformer_blocks: int = 1,
+        num_transformer_blocks: int = 4,
     ):
         """
         nonlin_first: if True you get conv -> nonlin -> norm. Else it's conv -> norm -> nonlin
@@ -83,7 +83,10 @@ class TransUNet(PlainConvUNet):
             )
 
         self.transformer_block = self._make_transformer_block(
-            last_stage_features, n_heads, dropout_rate
+            last_stage_features,
+            n_heads,
+            dropout_rate,
+            num_layers=num_transformer_blocks,
         )
 
     def _make_transformer_block(self, hidden_dim, n_heads, dropout_rate, num_layers=1):
