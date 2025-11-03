@@ -14,5 +14,5 @@ def show_mask(path):
 
 
 if __name__ == "__main__":
-    path = "/root/autodl-tmp/predict/NoFrameLens"
+    path = "/root/autodl-tmp/predict/NoFrameFrame"
     show_mask(path)

@@ -3,6 +3,7 @@ import shutil
 from multiprocessing import Pool
 
 from batchgenerators.utilities.file_and_folder_operations import *
+from tqdm import tqdm
 
 from nnunetv2.dataset_conversion.generate_dataset_json import generate_dataset_json
 from nnunetv2.paths import nnUNet_raw
@@ -70,8 +71,11 @@ if __name__ == "__main__":
                     ),
                 )
             )
-
+        print("converting training set")
+        for i in tqdm(r):
+            i.get()
         # test set
+        r = []
         valid_ids = subfiles(
             join(test_source, "mask", "frame"), join=False, suffix="png"
         )
@@ -90,7 +94,9 @@ if __name__ == "__main__":
                     ),
                 )
             )
-        _ = [i.get() for i in r]
+        print("converting test set")
+        for i in tqdm(r):
+            i.get()
 
     generate_dataset_json(
         join(nnUNet_raw, dataset_name),

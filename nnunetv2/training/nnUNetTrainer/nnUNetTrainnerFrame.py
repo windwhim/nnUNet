@@ -14,4 +14,4 @@ class nnUNetTrainerFrame(nnUNetTrainerGlasses):
         super().__init__(plans, configuration, fold, dataset_json, device)
 
         self.num_iterations_per_epoch = 3500
-        self.num_epochs = 30
+        self.num_epochs = 20

@@ -69,5 +69,5 @@ def modify(dataset_index: str):
 
 if __name__ == "__main__":
     # modify("001")
-    # modify("002")
-    modify("102")
+    modify("002")
+    # modify("102")
